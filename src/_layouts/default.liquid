@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="/style.css">
+      <title>{{ page.title }}</title>
+  </head>
+  <body>
+    <div>
+      {% include "header.liquid" %}
+      <main class="main-content">
+        {{ page.content }}
+      </main>
+      {% include "footer.liquid" %}
+    </div>
+  </body>
+</html>

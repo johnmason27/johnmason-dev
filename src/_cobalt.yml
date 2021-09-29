@@ -1,0 +1,7 @@
+source: "."
+site:
+  title: John Mason - My random black hole.
+  description: Random posts for all!
+  base_url: http://johnm.dev
+posts:
+  rss: rss.xml
