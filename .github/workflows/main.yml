@@ -20,7 +20,13 @@ jobs:
     - name: Adding Rust to ENV
       run: source $HOME/.cargo/env
     - name: Installing Cobalt
-      run: cargo install cobalt-bin
+      run: curl -LSfs https://japaric.github.io/trust/install.sh |
+        sh -s --
+        --git cobalt-org/cobalt.rs
+        --crate cobalt
+        --force
+        --target x86_64-unknown-linux-gnu
+        --tag v0.15.0
     - name: Build Cobalt Site
       run: cobalt build -c ./src/_cobalt.yml -d ./build
     - name: Deploy to Staging server
