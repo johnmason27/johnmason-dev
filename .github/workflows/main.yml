@@ -22,13 +22,4 @@ jobs:
     - name: Installing Cobalt
       run: curl -LSfs https://raw.githubusercontent.com/crate-ci/gh-install/master/v1/install.sh | sh -s -- --git cobalt-org/cobalt.rs --crate cobalt
     - name: Build Cobalt Site
-      run: cobalt build -c ./src/_cobalt.yml -d ./build
-    - name: Deploy to Staging server
-      uses: easingthemes/ssh-deploy@v2.0.7
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-        ARGS: "-rltgoDzvO"
-        SOURCE: "build/"
-        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        REMOTE_USER: ${{ secrets.REMOTE_USER }}
-        TARGET: ${{ secrets.REMOTE_TARGET }}
+      run: echo "Hello World"
