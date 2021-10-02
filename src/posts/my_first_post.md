@@ -1,9 +1,8 @@
 ---
 title: My First Post
 layout: default.liquid
-is_draft: false
 ---
 
-# My first ever post!
+## My first post!
 
-Hmmm pls work!
+This my first post on my new website I've made. This website is built using Cobalt and liquid pages and I'm going to be making posts about all the things that interest me such as programming, programming soft skills, technology, fitness and cooking.

@@ -1,4 +1,5 @@
 ---
+title: johnmason.dev
 layout: default.liquid
 ---
 ## Posts
