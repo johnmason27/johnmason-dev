@@ -23,6 +23,12 @@ body {
     color: var(--white-smoke);
 }
 
+@media (max-width: 960px) {
+    body {
+        width: auto;
+    }
+}
+
 .page {
     margin: 20px;
 }
