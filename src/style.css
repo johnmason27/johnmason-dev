@@ -12,7 +12,6 @@
 
 html {
     font-size: 16px;
-    word-wrap: break-word;
 }
 
 body {
@@ -23,9 +22,10 @@ body {
     color: var(--white-smoke);
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1200px) {
     body {
         width: auto;
+        word-wrap: break-word;
     }
 }
 
