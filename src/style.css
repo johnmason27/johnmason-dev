@@ -35,12 +35,12 @@ body {
 
 h1 {
     color: var(--white-smoke);
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin: 10px 0;
 }
 
 h2 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin: 20px 0;
 }
 
@@ -57,10 +57,11 @@ nav li:nth-child(2) {
 
 a {
     color: var(--slate-blue);
+    font-size: 2rem;
 }
 
-footer p {
-    font-size: 1rem;
+p {
+    font-size: 2rem;
 }
 
 footer span {
