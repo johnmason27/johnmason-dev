@@ -2,6 +2,7 @@
 title: My First Post
 layout: default.liquid
 ---
+#### John Mason - 03-10-2021
 
 ## My first post!
 

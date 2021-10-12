@@ -2,6 +2,7 @@
 title: How to setup a static site on Digital Ocean and automatically deploy changes using GitHub Actions
 layout: default.liquid
 ---
+#### John Mason - 03-10-2021
 
 ## How to setup a static site on Digital Ocean and automatically deploy changes using GitHub Actions
 

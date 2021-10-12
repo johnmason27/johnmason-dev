@@ -92,3 +92,14 @@ footer span {
     margin: 5px 0;
     margin-left: 10px;
 }
+
+.bullet-points {
+    display: flex;
+    flex-direction: column;
+    list-style-type: disc;
+    margin-left: 25px;
+}
+
+.bullet-points li {
+    font-size: 2rem;
+}
