@@ -67,7 +67,7 @@ One of the steps of upgrading your applications is making sure all dependencies 
 
 The simplest way to do this is to go onto nutget.org and search for your package. Under the dependencies section of the package it will list each platform it targets and what version of it. As well as that it will also list the dependencies it needs when running on that platform. 
 
-<img style="height:40%;width:50%" src="../media/nuget-dependencies.png" alt="MassTransit Dependencies on nuget.org">
+<img class="regular-img" src="../media/nuget-dependencies.png" alt="MassTransit Dependencies on nuget.org">
 
 To make sure your Nuget package is compatible you need to make sure .NET Standard 2.0 (or lower) or .NET Core is in the list. 
 
