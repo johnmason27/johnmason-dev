@@ -28,7 +28,8 @@ A small note however is that when serializing BCL types in different versions of
 
 When serializing a `List<string>` in .NET Framework here's the output:
 {% raw %}
-```
+<pre>
+<code>
 {
     "$type": "System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib",
     "$values": [
@@ -36,12 +37,14 @@ When serializing a `List<string>` in .NET Framework here's the output:
         "Bill"
     ]
 }
-```
+</code>
+</pre>
 {% endraw %}
 
 And serializing the same `List<string>` in .NET Core:
 {% raw %}
-```
+<pre>
+<code>
 {
     "$type": "System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib",
     "$values": [
@@ -49,7 +52,8 @@ And serializing the same `List<string>` in .NET Core:
         "Bill"
     ]
 }
-```
+</code>
+</pre>
 {% endraw %}
 
 As you can see, the Base Class Libary type is different and this would throw a `JsonSerializationException`.

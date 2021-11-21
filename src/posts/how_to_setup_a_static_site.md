@@ -68,7 +68,8 @@ Finally, add one with the value of `SERVER_SSH_KEY` and add in the value of the 
 Now on the repository screen navigate to actions > new workflow and setup a simple workflow. Into the contents of the YAML file enter:
 
 {% raw %}
-```
+<pre>
+<code>
 name: CI
 
 on:
@@ -107,7 +108,8 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
-```
+</pre>
+</code>
 {% endraw %}
 
 The steps involving installing rust, cobalt and building your website may be different and you may want to install node and then run `npm run build` depending on what your website is. Once you've setup the file for your needs you can now commit the file to the repo and watch it run.
