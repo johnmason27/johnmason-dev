@@ -16,6 +16,8 @@ If your CV ends up being 10 pages long you've probably got too much information 
 
 Aim for 2-3 pages and make sure you include information that will make you stand out from the crowd. 
 
+Additionally, you don't want to go into too much detail on your CV because there needs to be things to build up on later down the line in the application process. If you don't go into super huge detail it opens up the door for an interviewer to ask you questions in an interview which you can then explain and expand up on the points you mentioned in your CV. Wait for them to bite before realing them in. 
+
 ### Technical skills
 In the tech bubble now a days there are so many different technical skills you could list and that could end up taking up to a page on your CV so your going to want to only put the relevent stuff down so somebody can see your core skill set. Think about the jobs your applying for
 make sure you list all the technical skills that are relevant to that role. Make sure any skills you are putting down like C#, you put what you've actually had experience in since putting C# doesn't tell a reader much. Saying, C# but also listing that you've created web APIs and worked with MVC would be a good example. 
@@ -74,4 +76,4 @@ Format idea:
 ### Extras
 Employers are often interested in what you get up to outside of your normal role. Share any personal projects your proud of but make sure they're complete projects and not those half finished projects all developers have. Add a link to your Github where they can see any other public work you've got, LinkedIn profile or a personal website where you've got something to share. 
 
-Some other topics a potential employeer might be interested in would include publications from yourself, papers published, patents, presentations you've given or involvements you've got in student groups or other groups that could help show off you. Especially, any leadership based rolls you may have. 
+Some other topics a potential employeer might be interested in would include publications from yourself, papers published, patents, presentations you've given or involvements you've got in student groups or other groups that could help show off you. Especially, any leadership based roles you may have. 
