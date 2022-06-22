@@ -27,8 +27,12 @@ jobs:
         --tag v0.15.0
     - name: Build Cobalt Site
       run: cobalt build -c ./src/_cobalt.yml -d ./build
-    - name: Push to repo
-      run: ls; git add .
+    - name: Add build files
+      run: git add /Bulid
+    - name: Commit build
+      run: git commit -m "Adding build files from github action"
+    - name: Push files to main
+      run: git push
 #     - name: Deploy to Staging server
 #       uses: easingthemes/ssh-deploy@main
 #       env:
