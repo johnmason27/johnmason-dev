@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="/style.css">
+      <title>How to setup a static site on Digital Ocean and automatically deploy changes using GitHub Actions</title>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+    <h1>John's random black hole.</h1>
+    <nav>
+        <ul>
+            <li><a href="/index.html">Posts</a></li>
+            <li><a href="/about_me.html">About Me</a></li>
+        </ul>
+    </nav>
+</header>
+      <main class="page-content">
+        <h4>John Mason - 03-10-2021</h4>
+<h2>How to setup a static site on Digital Ocean and automatically deploy changes using GitHub Actions</h2>
+<p>In this post you will learn all about how to setup your own static site.</p>
+<h2>Getting a domain</h2>
+<p>To allow people to view your website and host it on the DNS servers you will need to start by buying a domain name. I brought mine from <code>namecheap</code> for around £11.</p>
+<h2>Generate your local SSH keys</h2>
+<p>To connect to the server you will need to use SSH. In a terminal type <code>ssh-keygen</code> and then follow the instructions to generate your keys.</p>
+<h2>Setup initial Digital Ocean server</h2>
+<p>To host the site we're going to need a server. I will be using Digital Ocean's simple droplet.</p>
+<p>Before we create the droplet on the dashboards navigation menu on the left go to settings &gt; security &gt; add SSH key. Now copy the contents of your public SSH key into the box and give it a name before clicking the add SSH key button.</p>
+<p>Once on the dashboard go to droplets and create a new one. Select a Ubuntu Machine on the basic plan, choose the place you want to host your data, add the SSH key we added to your account and then create the droplet.</p>
+<p>You can now start the droplet.</p>
+<h2>Connecting to the droplet</h2>
+<p>On the dashboard go to the droplet section and then click on the droplet you created and make sure it's turned on. Once turned on you should see an IP adress next to <code>ipv4</code>. Copy the IP address and then go to powershell on your computer and type <code>ssh root@[IP adress just copied]</code>. Follow the instructions and you'll then be connected to your server.</p>
+<h2>Setting up the server</h2>
+<p>Now your connected to the server we're going to need to update the server, generate a new SSH key, install nginx, setup certbot certificate.</p>
+<h3>Updating the server</h3>
+<p>To update the server type the following into the terminal <code>sudo apt update &amp;&amp; sudo apt upgrade -y</code>.</p>
+<h3>Generate the server SSH key</h3>
+<p>To generate the SSH key for the server start by typing the command <code>ssh-keygen -m PEM -t rsa -b 4096</code> and follow the instructions given. This will generate the SSH key for the server.</p>
+<p>We now need to copy the SSH key for our server into the <code>authorized_keys</code> folder. Navigate into the .ssh directory <code>cd ~/.ssh</code> and then type <code>cat [pub key file] &gt;&gt; authorized_keys</code> to add it to the file. Whilst your here copy the value of the private key to and make sure to have it accessible somewhere for later.</p>
+<h3>Install nginx</h3>
+<p>Type the command <code>sudo apt-get install nginx</code> to install nginx onto the server. Once install navigate to <code>http://[server ip]</code> to see the basic page loaded by nginx. Now navigate to the nginx directory by navigating to <code>var/www/html/</code>. Delete all the files inside so we have a clean web server to deal with.</p>
+<h3>Install Certbot</h3>
+<p>Finally, type <code>sudo snap install core; sudo snap refresh core</code> into the terminal followed by <code>sudo snap install --classic certbot</code> followed by <code>sudo ln -s /snap/bin/certbot /usr/bin/certbot</code> followed by <code>sudo certbot --nginx</code>. Certbot is now installed and you've setup your certificate so your site will now run on https.</p>
+<h2>Setting up the domain on your server</h2>
+<p>Go onto your domain provider and enter the following 3 custom dns urls for your domain name <code>ns1.digitalocean.com</code>, <code>ns2.digitalocean.com</code>, <code>ns3.digitalocean.com</code>.</p>
+<p>Now go onto the digital ocean dashboard go to the networking section and then domains. Add a new domain and then add 2 new domain records. The first one of type A with a host name of <code>[your domain name]</code> which direct's to the IP of your server and then the second of type CNAME which contains a host name <code>www.[your domain name]</code> with an alias of <code>[your domain name]</code>.</p>
+<p>Your server and domain is now all setup.</p>
+<h2>Deploying from Github</h2>
+<p>Create your repository and add your files.</p>
+<h3>Setting up repository secrets</h3>
+<p>On your repository screen navigate to settings &gt; secrets and then add 4 new secrets.</p>
+<p>The first one to add should be called <code>REMOTE_HOST</code> with the value of your domain name or server IP.</p>
+<p>Secondly, add another with the name of <code>REMOTE_TARGET</code> with the value of the directory we're saving the files too. In this case the value should be <code>/var/www/html/</code>.</p>
+<p>Thirdly, add another with the name of <code>REMOTE_USER</code> with the value of <code>root</code>.</p>
+<p>Finally, add one with the value of <code>SERVER_SSH_KEY</code> and add in the value of the private key you generated on the <strong>SERVER</strong> making sure to copy the entire files contents into the field.</p>
+<h3>Setting up the workflow</h3>
+<p>Now on the repository screen navigate to actions &gt; new workflow and setup a simple workflow. Into the contents of the YAML file enter:</p>
+<pre>
+<code>
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+    
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+       
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: Installing required packages
+      run: sudo apt install git curl
+    - name: Installing Rust
+      run: curl https://sh.rustup.rs -sSf | sh -s -- -y
+    - name: Adding Rust to ENV
+      run: source $HOME/.cargo/env
+    - name: Installing Cobalt
+      run: curl -LSfs https://japaric.github.io/trust/install.sh |
+        sh -s --
+        --git cobalt-org/cobalt.rs
+        --crate cobalt
+        --force
+        --target x86_64-unknown-linux-gnu
+        --tag v0.15.0
+    - name: Build Cobalt Site
+      run: cobalt build -c ./src/_cobalt.yml -d ./build
+    - name: Deploy to Staging server
+      uses: easingthemes/ssh-deploy@main
+      env:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          ARGS: "-rltgoDzvO --delete"
+          SOURCE: "build/"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
+</pre>
+</code>
+<p>The steps involving installing rust, cobalt and building your website may be different and you may want to install node and then run <code>npm run build</code> depending on what your website is. Once you've setup the file for your needs you can now commit the file to the repo and watch it run.</p>
+<p>It should add your site to the folder on the server and if you navigate to your domain name in your browser you should see your site and it's contents.</p>
+<p>Everytime you push to the repository the website will now be updated.</p>
+
+      </main>
+      <footer>
+    <p>Made by <span>John Mason</span> using <span>Cobalt</span> and <span>Liquid</span> pages</p>
+</footer>
+    </div>
+  </body>
+</html>

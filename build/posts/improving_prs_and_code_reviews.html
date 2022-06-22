@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="/style.css">
+      <title>Improving PRs and Code Reviews</title>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+    <h1>John's random black hole.</h1>
+    <nav>
+        <ul>
+            <li><a href="/index.html">Posts</a></li>
+            <li><a href="/about_me.html">About Me</a></li>
+        </ul>
+    </nav>
+</header>
+      <main class="page-content">
+        <h4>John Mason - 12-10-2021</h4>
+<h2>Improving PRs and Code Reviews</h2>
+<h2>Break down the main task 🔨</h2>
+<p>Start with the initial JIRA ticket which should contain:</p>
+<ul class="bullet-points">
+    <li>Task descriptions</li>
+    <li>Technical details</li>
+    <li>Testing conciderations</li>
+    <li>Automation testing conciderations</li>
+    <li>Definition Of Done</li>
+</ul>
+<p>Breaking down the ticket into sub-tasks - think of how you can break down the JIRA task into smaller tasks so we can complete the work in smaller stages and create more frequent and smaller pull requests.</p>
+<ul class="bullet-points">
+    <li>The tasks can then be created in JIRA using the sub-task feature - they don't need to contain any information, they can just be a title which the team knows about.</li>
+    <li>You can then use the sub-task issue name as the branch name for your work.</li>
+    <li>We can then create our smaller PR's into a feature branch or master once the work has been completed.</li>
+</ul> 
+<p>When completing the ticket in JIRA we wouldn't mark the sub-task as <strong>NextVersion</strong>. The main task is the only thing that should be marked as <strong>NextVersion</strong> once all the sub-tasks are completed.</p>
+<h2>Small atomic commits ⚛</h2>
+<p>Use seperate commits for:</p>
+<ul class="bullet-points">
+    <li>New features</li>
+    <li>Refactoring</li>
+    <li>Bug fixes</li>
+</ul> 
+<p>Avoid batching multiple changes in a single commit.<br />
+Each commit should leave the code base in a valid state:</p>
+<ul class="bullet-points">
+    <li>Tests passing.</li>
+    <li>New tests added.</li>
+    <li>No silly variable names or code smells.</li>
+</ul> 
+<p>Work on one sub-task at a time so you can focus on that, complete it quicker and then create a small PR for the work.</p>
+<p>Focused commits make it easier to create focused pull requests.</p>
+<ul class="bullet-points">
+    <li>You can easily undo commits and changes if your commit contains multiple changes or code smells.</li>
+</ul> 
+<p>Pull requests are now easier to review because you can view the seperate commits and with each commit containing a valid single change you can review the commits one by one.</p>
+<h2>Frequent pushes ⏩</h2>
+<ul class="bullet-points">
+    <li>Frequent feedback from peers.</li>
+    <li>No risk of losing work.</li>
+    <li>More oppurtinities for smaller PRs.</li>
+</ul> 
+<h2>Frequent small PRs 🤏</h2>
+<ul class="bullet-points">
+    <li>Keep them small and focused.</li>
+    <li>Move refactors into their own pull requests if they are big.</li>
+    <li>A pull request should take <b>max ~ 5 mins to review</b>.</li>
+    <li>Reviewer should be able to keep the entire PR in their head.</li>
+    <li>Have 1 <b>focus</b> per pull request.</li>
+</ul> 
+<h2>Bibliography</h2>
+<p><a href="https://learning-notes.mistermicheels.com/processes-techniques/small-commits-pull-requests/">Small commits and pull requests | learning-notes (mistermicheels.com)</a></p>
+
+      </main>
+      <footer>
+    <p>Made by <span>John Mason</span> using <span>Cobalt</span> and <span>Liquid</span> pages</p>
+</footer>
+    </div>
+  </body>
+</html>

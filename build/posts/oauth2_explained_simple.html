@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="/style.css">
+      <title>OAuth2.0 Explained Simple</title>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+    <h1>John's random black hole.</h1>
+    <nav>
+        <ul>
+            <li><a href="/index.html">Posts</a></li>
+            <li><a href="/about_me.html">About Me</a></li>
+        </ul>
+    </nav>
+</header>
+      <main class="page-content">
+        <h4>John Mason - 20-11-2021</h4>
+<h2>OAuth2.0 Explained Simple</h2>
+<p>OAuth 2.0 is a security standard which lets one application access data from another application without sharing your credentials.</p>
+<h3>Key Terminology</h3>
+<p><strong>Resource Owner</strong>: User that gives permission to another application to access another application's data.</p>
+<p><strong>Client</strong>: Application that wants to access another application's data on the Resource Owner's behalf.</p>
+<p><strong>Authorization Server</strong>: Application the Client is trying to get the data from.</p>
+<p><strong>Resource Server</strong>: The API the Client wants to access.</p>
+<p><strong>Scope</strong>: Data the Client is trying to access or the actions the Client wants to perform in the Authorization Server on behalf of the Resource Owner.</p>
+<p><strong>Redirect URI/Callback URL</strong>: Once the Resource Owner has given permission to the Client to access the data it wants from the Authorization Server, the server will redirect the Resource Owner back to the Client via the Rediect URI/Callback URL.</p>
+<p><strong>Client ID</strong>: Authorization Server uses this to identify the Client.</p>
+<p><strong>Client Secret</strong>: A password shared between the Authorization Server and the Client. The Authorization Server uses the Secret to validate the request came from the Client.</p>
+<p><strong>Response Type</strong>: Type of data sent back to the Client by the Authorization Server.</p>
+<p><strong>Consent</strong>: The Resource Owner giving consent to the Authorization Server that they wish to allow access to the data requested in the Scope by the Client.</p>
+<p><strong>Authorization Code</strong>: Sent to the Client once the Authorization Server has recieved consent from the Resource Owner.</p>
+<p><strong>Access Token</strong>: Authorization Server sends the Access Token to the Client who can then send the Access Token to the Resource Server in exchange for the data or action requested to be performed.</p>
+<h3>Example</h3>
+<p>Person A (Resource Owner) goes onto a website (Client) and the website want's to load their Gmail inbox.</p>
+<p>The website redirects Person A's browser to get their Consent from the Authorization Server sending the Client ID, Redirect URI, Response Type and Scope. The Authorization Server will establish a relationship with the Client by sharing the Client ID and Client Secret for exchanges and if the Client ID given can be verified against the Client Secret the relationship is established. The scope will be the data the Client wants access too. The Response Type will be the Authorization Code. Once Person A has given consent to the Client for the requested Scope the Redirect URI will be used by the Authorization Server to redirect Person A back to the website and sends the Authorization Code to the Client.</p>
+<p>The Client now will send the Authorization code to the Authorization Server in exchange for an Access Token. The Authorization code's life is short lived so the Client may need to request a new Authorization code. If the Authorization code hasn't expired the Client can send a request to the Authorization Server for an Access Token. The Access Token can then by sent by the Client to the Resource Server in exchange for the data or action. The Access Token would typically have a longer life than the authorization code and once it's expired a new one will need to be requested.</p>
+<p>In this example once the website has got an Access Token it can request the Gmail inbox of Person A from the Resource Server since it now has been given authorized access from Person A. Note that no password was exchanged between the Client and the Resource Owner. The authorization is handled by the Authorization Server.</p>
+
+      </main>
+      <footer>
+    <p>Made by <span>John Mason</span> using <span>Cobalt</span> and <span>Liquid</span> pages</p>
+</footer>
+    </div>
+  </body>
+</html>
