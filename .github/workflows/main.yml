@@ -27,12 +27,14 @@ jobs:
         --tag v0.15.0
     - name: Build Cobalt Site
       run: cobalt build -c ./src/_cobalt.yml -d ./build
-    - name: Add build files
-      run: ls; git add /home/runner/work/johnmason-dev/johnmason-dev/build -f
-    - name: Commit build
-      run: git commit -m "Adding build files from github action"
-    - name: Push files to main
-      run: git push
+    - name: Commit and push Site
+      run: |
+        git config --global user.name "johnmason27"
+        git config --global user.email "jjnrmason@me.com"
+
+        git add /home/runner/work/johnmason-dev/johnmason-dev/build -f 
+        git commit -m "Adding build files from github action"
+        git push
 #     - name: Deploy to Staging server
 #       uses: easingthemes/ssh-deploy@main
 #       env:
