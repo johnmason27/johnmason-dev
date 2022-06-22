@@ -28,7 +28,7 @@ jobs:
     - name: Build Cobalt Site
       run: cobalt build -c ./src/_cobalt.yml -d ./build
     - name: Add build files
-      run: git add /Bulid
+      run: git add /bulid
     - name: Commit build
       run: git commit -m "Adding build files from github action"
     - name: Push files to main
