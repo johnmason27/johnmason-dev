@@ -28,7 +28,7 @@ jobs:
     - name: Build Cobalt Site
       run: cobalt build -c ./src/_cobalt.yml -d ./build
     - name: Add build files
-      run: ls; git add /home/runner/work/johnmason-dev/johnmason-dev/build
+      run: ls; git add /home/runner/work/johnmason-dev/johnmason-dev/build -f
     - name: Commit build
       run: git commit -m "Adding build files from github action"
     - name: Push files to main
